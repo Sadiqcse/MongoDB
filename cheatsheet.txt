@@ -1,0 +1,117 @@
+MongoDB Commands for Databases
+
+View all databases
+show dbs
+
+Create a new or switch databases
+use dbName
+
+View current database
+db
+
+Delete Database
+db.dropDatabase()
+
+
+MongoDB Commands for Collections
+show collections
+
+Create a collection named 'comments'
+db.createCollection('comments')
+
+Drop a collection named 'comments'
+db.'comments'.drop()
+
+Mongo DB Commands for Rows
+Show all rows in a collection
+db.comments.find()
+
+Insert one Row
+db.comments.insert({
+    'name' : 'Sadiq',
+    'lang' : 'Javascript',
+    'membersince' : 5
+})
+Insert many Rows
+db.comments.insertMany([{
+    'name' : 'Sadiq',
+    'lang' : 'Javascript',
+    'membersince' : 5
+},
+{
+    'name' : 'Sunny',
+    'lang' : 'Python',
+    'membersince' : 3
+},
+{
+    'name' : 'Akash',
+    'lang' : 'Java',
+    'membersince' : 4
+}])
+
+
+Show all rows in a collection(Prettified)
+db.comments.find().pretty()
+
+
+db.comments.insert({
+    'name' : 'Sadiq',
+    'lang' : 'Javascript',
+    'membersince' : 5,
+    'date' : new Date()
+})
+
+Search in a Mongo DB Database
+db.comments.find({lang:'Python'})
+db.comments.find({lang:'Python', 'name':'Sunny'})
+
+Limit the number of rows in output
+db.comments.find().pretty().limit(2)
+
+Count the number of rows in the output
+db.comments.find().count()
+
+sort by name
+db.comments.find({'name':'Sunny'}).count()
+
+Sorting 
+Ascending
+db.comments.find().sort({membersince:1}).pretty()
+Descending
+db.comments.find().sort({membersince:1}).pretty()
+
+Find the first row matching the object
+findOne
+db.comments.findOne({'name':'Sadiq'})
+
+Update a Row
+db.comments.update({'name':'Rohit'},
+{    'name' : 'Sadiq',
+    'lang' : 'Javascript',
+    'membersince' : 51
+},{upsert: true})
+
+
+MongoDB Increment Operator
+
+db.comments.update({name:'Sunny'},
+{$inc:{
+   membersince:3
+}})
+
+
+MongoDB Rename Operator
+
+db.comments.update({name:'Sunny'},
+{$rename:{
+   membersince:'member'
+}})
+
+Delete Row
+db.comments.remove({name: 'Sadiq'})
+
+Lessthan/Greaterthan/Lessthan or equals/Greaterthan or equals
+db.comments.find({membersince:{$lt:10}})
+db.comments.find({membersince:{$gt:10}})
+
+MongoDB Atlas
